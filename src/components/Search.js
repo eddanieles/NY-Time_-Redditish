@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import { Link } from 'react-router';
 
 class Search extends Component {
   constructor(props){
@@ -29,8 +30,9 @@ class Search extends Component {
           <a href={`${article.web_url}`}>{article.web_url}</a>
           <p>{article.headline.main}</p>
           <p>{article.snippet}</p>
-          <button className="btn btn-success">Upvote</button>
-          <button className="btn btn-danger">Downvote</button>
+          <Link to="/article">Read More</Link>
+          {/* <button className="btn btn-success">Upvote</button>
+          <button className="btn btn-danger">Downvote</button> */}
         </article>)}
       </div>
     )

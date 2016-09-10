@@ -4,7 +4,7 @@ import AppContainer from '../containers/AppContainer';
 import Front from '../components/Front';
 import Login from '../components/Login';
 import Register from '../components/Register';
-import Search from '../components/Search';
+import Article from '../components/Article';
 
 const router = (
   <Router history={hashHistory}>
@@ -12,7 +12,7 @@ const router = (
       <IndexRoute component={Login} />
       <Route path="/register" component={Register}/>
       <Route path="/front" component={Front}/>
-      <Route path="/search" component={Search}/>
+      <Route path="/article" component={Article}/>
     </Route>
   </Router>
 )
