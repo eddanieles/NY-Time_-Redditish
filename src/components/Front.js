@@ -1,35 +1,33 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
-import Navbar from './Navbar'
-
+import Search from './Search'
 
 class Front extends Component {
   constructor(props){
     super(props);
     this.state = {
-      response: [],
+      searchTerms: 'news',
     }
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
-  componentDidMount() {
-    this.serverRequest = $.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=d52b04cdb0eb449988f46e0036017e2d&sort=newest&fl=web_url,headline,snippet`, function (result) {
-      this.setState({
-        response: result.response.docs
-      });
-    }.bind(this));
-  }
-  componentWillUnmount() {
-    this.serverRequest.abort();
+  handleSubmit(event){
+    event.preventDefault();
+    //console.log(event.target.elements[0].value);
+    let input = event.target.elements[0];
+    let inputValue = input.value;
+    this.setState({
+      searchTerms: inputValue
+    });
   }
   render() {
-    //console.log(this.state.response);
     return (
       <div>
-      {this.state.response.map((article, index) =>
-        <article key={index}>
-          <a href={`${article.web_url}`}>{article.web_url}</a>
-          <p>{article.headline.main}</p>
-          <p>{article.snippet}</p>
-        </article>)}
+        <form className="navbar-form" onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <input type="text" className="form-control" placeholder="Search" />
+          </div>
+          <button type="submit" className="btn btn-default">Submit</button>
+        </form>
+        <Search searchTerms={this.state.searchTerms}/>
       </div>
     )
   }

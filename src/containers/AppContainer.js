@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navbar from '../components/Navbar';
+//import Navbar from '../components/Navbar';
 
 class AppContainer extends Component {
   constructor (props) {
@@ -11,7 +11,7 @@ class AppContainer extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         {this.props.children}
       </div>
     );
