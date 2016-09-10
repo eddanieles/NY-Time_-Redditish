@@ -5,11 +5,11 @@ class Search extends Component {
   constructor(props){
     super(props);
     this.state = {
-      response: [],
+      response: []
     }
   }
   componentDidMount() {
-    let url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=d52b04cdb0eb449988f46e0036017e2d&q=${this.props.searchTerms}&sort=newest`
+    let url = this.props.url;
     console.log(url);
     this.serverRequest = $.get(url , function (result) {
       this.setState({
@@ -22,7 +22,8 @@ class Search extends Component {
   }
   render() {
     //console.log(this.state.response);
-    //console.log(this.props.searchTerms);
+    console.log(this.props.searchTerms);
+    console.log(this.props.url);
     return (
       <div>
       {this.state.response.map((article, index) =>

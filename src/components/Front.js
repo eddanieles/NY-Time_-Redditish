@@ -6,6 +6,7 @@ class Front extends Component {
     super(props);
     this.state = {
       searchTerms: 'news',
+      url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=d52b04cdb0eb449988f46e0036017e2d&q=news&sort=newest`
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -15,7 +16,8 @@ class Front extends Component {
     let input = event.target.elements[0];
     let inputValue = input.value;
     this.setState({
-      searchTerms: inputValue
+      searchTerms: inputValue,
+      url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=d52b04cdb0eb449988f46e0036017e2d&q=${inputValue}&sort=newest`
     });
   }
   render() {
@@ -27,7 +29,9 @@ class Front extends Component {
           </div>
           <button type="submit" className="btn btn-default">Submit</button>
         </form>
-        <Search searchTerms={this.state.searchTerms}/>
+        <Search
+          searchTerms={this.state.searchTerms}
+          url={this.state.url}/>
       </div>
     )
   }
