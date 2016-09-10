@@ -1,11 +1,15 @@
 import React from 'react';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import AppContainer from '../containers/AppContainer';
 import Front from '../components/Front';
+import Login from '../components/Login';
+import Register from '../components/Register';
 
 const router = (
-  <Router history={browserHistory}>
+  <Router history={hashHistory}>
     <Route path="/" component={AppContainer}>
+      <IndexRoute component={Login} />
+      <Route path="/register" component={Register}/>
       <Route path="/front" component={Front}/>
     </Route>
   </Router>

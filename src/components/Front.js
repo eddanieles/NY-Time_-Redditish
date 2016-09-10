@@ -21,10 +21,9 @@ class Front extends Component {
     this.serverRequest.abort();
   }
   render() {
-    console.log(this.state.response);
+    //console.log(this.state.response);
     return (
       <div>
-      <Navbar />
       {this.state.response.map((article, index) =>
         <article key={index}>
           <a href={`${article.web_url}`}>{article.web_url}</a>
