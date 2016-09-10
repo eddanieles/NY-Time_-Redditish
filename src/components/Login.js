@@ -17,7 +17,9 @@ class Login extends Component {
       password: password
     }, this.navigate);
   }
-  navigate(error, authDate){
+  navigate(error, authData){
+    console.log(error);
+    console.log(authData);
     this.props.history.replaceState(null, "/front");
   }
   render(){
