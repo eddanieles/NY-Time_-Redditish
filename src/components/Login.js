@@ -1,7 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import base from '../config/base.js';
 
 class Login extends Component {
+  constructor(props){
+    super(props);
+    this.login = this.login.bind(this);
+    this.navigate = this.navigate.bind(this);
+  }
+  login(event){
+    event.preventDefault();
+    let email = this.refs.email.value;
+    let password = this.refs.email.value;
+    base.authWithPassword({
+      email: email,
+      password: password
+    }, this.navigate);
+  }
+  navigate(error, authDate){
+    this.props.history.replaceState(null, "/front");
+  }
   render(){
     return(
       <form onSubmit={this.login}>
