@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-class Login extends Component {
+class Register extends Component {
   render(){
     return(
       <form onSubmit={this.register}>
@@ -15,4 +15,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default Register

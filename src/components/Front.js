@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Search from './Search'
 import $ from 'jquery';
+import { Link } from 'react-router';
 
 class Front extends Component {
   constructor(props){
@@ -20,7 +21,7 @@ class Front extends Component {
         url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=d52b04cdb0eb449988f46e0036017e2d&q=${this.refs.inputValue.value}&sort=newest`,
         type: 'GET',
         success: function(response) {
-          console.log(response);
+          //console.log(response);
           this.setState({
             response: response.response.docs
           });
@@ -28,10 +29,22 @@ class Front extends Component {
     });
 
   }
+  componentDidMount(){
+    $.ajax({
+        url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=d52b04cdb0eb449988f46e0036017e2d&q=news&sort=newest`,
+        type: 'GET',
+        success: function(response) {
+          //console.log(response);
+          this.setState({
+            response: response.response.docs
+          });
+        }.bind(this)
+    });
+  }
   render() {
     return (
       <div>
-        <p>Search for Articles</p>
+        <p>{this.props.user}</p>
         <form className="navbar-form" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <input type="text" className="form-control" placeholder="Search" ref="inputValue"/>
@@ -46,7 +59,7 @@ class Front extends Component {
             <a href={`${article.web_url}`}>{article.web_url}</a>
             <p>{article.headline.main}</p>
             <p>{article.snippet}</p>
-            <button className="btn btn-success">UpVote</button><button className="btn btn-danger">DownVote</button>
+            <Link to="/article"><button>Read More</button></Link>
           </article>)}
       </div>
     )

@@ -7,6 +7,7 @@ class Login extends Component {
     super(props);
     this.login = this.login.bind(this);
     this.navigate = this.navigate.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   login(event){
     event.preventDefault();
@@ -17,8 +18,14 @@ class Login extends Component {
       password: password
     }, this.navigate);
   }
-  navigate(error, authDate){
+  navigate(error, authData){
+    console.log(error);
+    console.log(authData);
     this.props.history.replaceState(null, "/front");
+  }
+  handleClick(event){
+    event.preventDefault();
+    base.authWithOAuthPopup('github', this.props.authUser);
   }
   render(){
     return(
@@ -27,6 +34,7 @@ class Login extends Component {
         <p><input type="text" ref="email" placeholder="Email Address"/></p>
         <p><input type="password" ref="password" placeholder="Password" /></p>
         <p><button type="submit">Login</button></p>
+        <p><button type="submit" onClick={this.handleClick}>SignIn with Github</button></p>
         <p>New User? <Link to="/register">Register Here</Link></p>
       </form>
     );
