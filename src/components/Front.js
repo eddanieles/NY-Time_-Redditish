@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Search from './Search'
 import $ from 'jquery';
 import { Link } from 'react-router';
+import axios from 'axios';
 
 class Front extends Component {
   constructor(props){
@@ -13,8 +14,6 @@ class Front extends Component {
   }
   handleSubmit(event){
     event.preventDefault();
-    //console.log(event.target.elements[0].value);
-    let input = event.target.elements[0];
     let inputValue = input.value;
     console.log(this.refs.inputValue.value);
     $.ajax({
@@ -51,9 +50,6 @@ class Front extends Component {
           </div>
           <button type="submit" className="btn btn-default">Submit</button>
         </form>
-        {/* <Search
-          searchTerms={this.state.searchTerms}
-          url={this.state.url}/> */}
         {this.state.response.map((article, index) =>
           <article key={index}>
             <a href={`${article.web_url}`}>{article.web_url}</a>

@@ -1,7 +1,27 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import base from '../config/base.js';
 
 class Register extends Component {
+  constructor(props){
+    super(props);
+    this.register = this.register.bind(this);
+    this.navigate = this.navigate.bind(this);
+  }
+  register(event){
+    event.preventDefault();
+    let email = this.refs.email.value;
+    let password = this.refs.password.value;
+    base.createUser({
+      email: email,
+      password: password
+    }, this.navigate);
+  }
+  navigate(error, authData){
+    console.log(error);
+    console.log(authData);
+    this.props.history.replaceState(null, "/front");
+  }
   render(){
     return(
       <form onSubmit={this.register}>

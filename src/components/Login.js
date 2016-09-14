@@ -19,13 +19,18 @@ class Login extends Component {
     }, this.navigate);
   }
   navigate(error, authData){
-    console.log(error);
+    console.log("Error:", error);
     console.log(authData);
     this.props.history.replaceState(null, "/front");
   }
   handleClick(event){
     event.preventDefault();
-    base.authWithOAuthPopup('github', this.props.authUser);
+    base.authWithOAuthPopup('github', this.authUser.bind(this));
+  }
+  authUser(error, authData){
+    console.log(authData);
+    this.props.history.replaceState(null, "/front");
+    this.props.sendData(authData.user.displayName);
   }
   render(){
     return(

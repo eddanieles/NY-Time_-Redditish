@@ -8,18 +8,12 @@ class AppContainer extends Component {
       user: '',
       uid: ''
     }
-    this.authUser = this.authUser.bind(this);
+    this.sendData = this.sendData.bind(this);
   }
-  authUser(error, authData){
-    console.log(authData.user.email);
-    console.log(authData.user.uid);
-    // this.setState({
-    //   user: authData.user.email,
-    //   uid: authData.user.uid
-    // })
+  sendData(userfromLogin){
+    this.setState({user: userfromLogin})
+  }
 
-    this.props.history.replaceState(null, "/front");
-  }
   render() {
     return (
       <div>
@@ -27,7 +21,8 @@ class AppContainer extends Component {
         {/* this.props.children */}
         {React.cloneElement(this.props.children, {
           user: this.state.user,
-          authUser: this.authUser
+          authUser: this.authUser,
+          sendData: this.sendData
         })}
       </div>
     );
