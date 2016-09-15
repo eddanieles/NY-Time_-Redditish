@@ -34,6 +34,7 @@ class Article extends Component {
       {user: this.props.user, article: this.state.article[0]}
       ])
     })
+    this.props.addLikedArticle(this.state.article[0]);
   }
   render(){
     //console.log(this.props);
