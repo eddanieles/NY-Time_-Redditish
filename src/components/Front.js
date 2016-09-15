@@ -3,6 +3,7 @@ import Search from './Search'
 import $ from 'jquery';
 import { Link } from 'react-router';
 import axios from 'axios';
+import ReactDOM from 'react-dom';
 
 class Front extends Component {
   constructor(props){
@@ -10,7 +11,11 @@ class Front extends Component {
     this.state = {
       response: []
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick(event){
+
   }
   handleSubmit(event){
     event.preventDefault();
@@ -55,7 +60,7 @@ class Front extends Component {
             <a href={`${article.web_url}`}>{article.web_url}</a>
             <p>{article.headline.main}</p>
             <p>{article.snippet}</p>
-            <Link to="/article"><button>Read More</button></Link>
+            <Link to={"/article/" + article._id}><button onClick={this.handleClick}>Read More</button></Link>
           </article>)}
       </div>
     )

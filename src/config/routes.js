@@ -12,7 +12,7 @@ const router = (
       <IndexRoute component={Login} />
       <Route path="/register" component={Register}/>
       <Route path="/front" component={Front}/>
-      <Route path="/article" component={Article}/>
+      <Route path="/article/(:article_id)" component={Article}/>
     </Route>
   </Router>
 )
